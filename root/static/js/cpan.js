@@ -297,10 +297,14 @@ $(document).ready(function() {
             );
         });
     }
-    $('.pod-errors').addClass('collapsed');
-    $('.pod-errors > p:first-child').click(function() {
-        $(this).parent().toggleClass('collapsed');
-    });
+
+    function collapse_pod_errors(top) {
+        top.find('.pod-errors').addClass('collapsed');
+        top.find('.pod-errors > p:first-child').click(function() {
+            $(this).parent().toggleClass('collapsed');
+        });
+    }
+    collapse_pod_errors($('.pod'));
 
     $('table.tablesorter th.header').on('click', function() {
         tableid = $(this).parents().eq(2).attr('id');
@@ -415,6 +419,7 @@ $(document).ready(function() {
                     format_index(index);
                 }
                 create_anchors(rendered);
+                collapse_pod_errors(rendered);
                 rendered.show();
                 submit.removeAttr("disabled");
             },
